@@ -1,0 +1,338 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>INFOAPTO</title>
+  
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="keywords" content="">
+         <meta name="Robots" content="index, follow"/>
+         <meta name="googlebot" content="index, follow"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+        <meta name="google-site-verification" content="" />
+        <meta name="Language" content="English"/>
+        <meta name="Geography" content="AG 110, River View Colony, Anna Nagar, Chennai - 600040">
+        <meta name="zipcode" content="600 040"/>
+        <meta name="city" content="Chennai"/>
+       <meta name="country" content="India"/>
+       <meta name="geo.position" content=""/>
+       <meta property="og:title" content="hiresay"/>
+       <meta property="og:image" content="https://hiresay.com/static/media/images/rchat.png"/>
+       <meta property="og:description" content=""/>
+       <meta property="og:url" content="http://hiresay.com/"/>
+       <meta name="twitter:card" content="summary"/>
+       <meta name="twitter:site" content="Hiresay"/>
+        <meta name="twitter:title" content="Hiresay"/>
+        <meta name="twitter:description" content=""/>
+  
+  
+  
+           <link rel="icon" href="./infoaptoicon.png">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+   
+  
+  
+    <link rel="stylesheet" href="./beforelogin.css">
+  
+    </head>
+    <body>
+      
+      
+        <div class="container">
+            <div class="forms-container">
+              <div class="signin-signup">
+                <div id="eql_msg">
+
+                </div>
+                <img alt="logo" src="./infoapto.png">
+                <div class="login" id="path-form">
+
+                  <button class="button-btn1" id="path_dir">  Select Your Download Path </button>
+                  <div id="dwd_path"></div>
+                  <button class="button-btn1" id="topath_dir">  Select Your Copy Path </button>
+                  <div id="copy_path"></div>
+                  <button class="btn-primary" id="dir_confirm">Confirm Paths</button>
+                </div>
+
+                
+                
+
+                <div class="login sign-in-form" id="sign-form" style="display: none;">
+                  <h3>User Login</h3> 
+                  <p>Enter your Email-id here. Entered Email-id should be the same you used for Registering.</p>
+                  <div class="input-field">
+                    <i class="fa fa-envelope"></i>
+                  <input type="text" placeholder="Enter Email" id="username" name="username" required >
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                     <input  type="password" id="password" placeholder="Enter Password"  required>
+                    <i id="toggle-password" class="fa fa-fw fa-eye-slash"></i>
+                </div> 
+                <button type="submit" id="submit"  class="button-btn">Login</button ></div>
+             
+
+                  <script>
+                    
+//correct loop path 
+//select two paths!!
+document.querySelector('#dir_confirm').addEventListener('click', () => {
+  if((sessionStorage.getItem('copypath')!=null&&sessionStorage.getItem('downloadpath')!='undefined')&&(sessionStorage.getItem('downloadpath')!=null&&sessionStorage.getItem('copypath')!='undefined')){
+  if(sessionStorage.getItem('copypath')==sessionStorage.getItem('downloadpath')){
+    document.getElementById("eql_msg").innerHTML="<span style='color:red'>Selected path should not be the same!!</span>"
+  }
+  else{
+  document.querySelector('#sign-form').style.display="block";
+ document.querySelector('#path-form').style.display="none";
+ document.getElementById("eql_msg").innerHTML=""
+  }
+}
+})
+document.querySelector('#topath_dir').addEventListener('click', () => {
+const {ipcRenderer} = require('electron') 
+
+ipcRenderer.send('openFile_tofold');
+
+
+ipcRenderer.on('getData2', (event, data) => { 
+document.getElementById("copy_path").innerHTML="<span style='color:blue'>"+data+"</span>"
+sessionStorage.setItem("copypath", data); 
+}) 
+})
+               document.querySelector('#path_dir').addEventListener('click', () => {
+const {ipcRenderer} = require('electron') 
+
+ipcRenderer.send('openFile');
+
+
+ipcRenderer.on('getData1', (event, data) => { 
+  document.getElementById("dwd_path").innerHTML="<span style='color:blue'>"+data+"</span>"
+ sessionStorage.setItem("downloadpath", data); 
+}) 
+})
+
+
+
+
+                  </script>
+                  <p id="message"></p>        
+  <script src="loginrender.js" ></script>
+  <script>
+    var path = require("path");
+    var os = require('os');
+    var url="http://192.168.31.55:3003/api/"
+    //var url="https://db.infoapto.com:8443/api/"
+  const storage = require('electron-storage');
+  storage.isPathExists("newfile.json", (itDoes) => {
+    console.log(itDoes)
+    if(itDoes){
+    storage.get("newfile")
+  .then(data => {
+    sessionStorage.setItem("downloadpath", data.downloadpath); 
+    sessionStorage.setItem("copypath", data.copypath);
+    
+    var axios = require('axios');
+    
+      var data = JSON.stringify({
+        "id":data.userid,
+        "auto":1,
+     });
+     var config = {
+       method: 'post',
+       url: url+'users/getUser',
+       headers: { 
+         'Content-Type': 'application/json'
+         },
+       data : data
+     };
+     
+     axios(config)
+     .then(function (response) {
+        if(response.data.status === true){
+          
+       
+        
+        const jwt_decode = require('jwt-decode');
+        
+   
+        var decoded=jwt_decode(response.data.token)
+   
+          
+        
+          var id = decoded.user_id;
+          var uname = decoded.name;
+   
+          sessionStorage.setItem("id", id);
+            sessionStorage.setItem("name", uname);
+            sessionStorage.setItem("token", response.data.token);
+         
+         console.log(sessionStorage.getItem('downloadpath'))
+
+  data1={
+              userid:id,
+              keyid:decoded.access_id,
+              accesskey:decoded.access_key,
+              token:response.data.token,
+              downloadpath:sessionStorage.getItem('downloadpath'),
+              copypath:sessionStorage.getItem('copypath')
+            }
+  
+  storage.set("newfile", data1)
+  .then(() => {
+    var ipcRenderer = require('electron').ipcRenderer;
+    ipcRenderer.send("message:loginhide",data1)
+     
+  }).catch(err => {
+      console.error(err);
+    });
+          
+        }   
+        else{
+          document.getElementById("message").innerHTML="<p style='color:red;'>"+response.data.message+"</p>";
+        }
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+       
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+})
+    
+  
+  
+      document.querySelector('#submit').addEventListener('click', function() {
+     
+  
+        let username = document.getElementById("username").value;
+         let password = document.getElementById("password").value;
+  
+   var axios = require('axios');
+       var data = JSON.stringify({
+          "username" : username,
+          "password": password,
+          "auto": 0,
+        
+       });
+      
+       var config = {
+         method: 'post',
+         url: url+'users/loginUser',
+         headers: { 
+           'Content-Type': 'application/json'
+           },
+         data : data
+       };
+       
+       axios(config)
+       .then(function (response) {
+        
+        
+          if(response.data.status === true){
+            const jwt_decode = require('jwt-decode');
+        
+            
+            var decoded=jwt_decode(response.data.token)
+        
+       
+          var id = decoded.user_id;
+          var uname = decoded.name;
+          sessionStorage.setItem("id", id);
+            sessionStorage.setItem("name", uname);
+            sessionStorage.setItem("token", response.data.token);
+            data1={
+              userid:id,
+              keyid:decoded.access_id,
+              accesskey:decoded.access_key,
+              token: response.data.token,
+              downloadpath:sessionStorage.getItem('downloadpath'),
+              copypath:sessionStorage.getItem('copypath'),
+            }
+  
+            console.log(data1);
+  
+      storage.set("newfile", data1)
+    .then(() => {
+      var ipcRenderer = require('electron').ipcRenderer;
+      ipcRenderer.send("message:loginhide",data1)
+      
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+         }
+         else{
+          
+          document.getElementById("message").innerHTML="<p style='color:red;'>"+response.data.message+"</p>";
+          
+
+
+         }
+        })
+                     
+                         });
+  window.setTimeout( function() {
+    window.location.reload();
+  
+  }, 120000);                   
+       
+   
+  </script>
+  
+            </div>
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content" style="z-index:80;">
+                                 
+                        <img src="./sign-up.svg" alt="" class="image" style="margin-top: 25%;margin-left: 20%;">
+                    </div>
+                </div>
+                 <div class="panel right-panel">
+                    <div class="content"  style="z-index:80;">
+                        <button class="btn trans" id="sign-in-button" >Sign-in</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        var passwordField =  document.getElementById('password');
+        var value = passwordField.value;
+        document.getElementById('toggle-password').addEventListener('click', () => {
+   
+  
+            if(passwordField.type == 'password') {
+          passwordField.type = 'text';
+      document.getElementById("toggle-password").classList.add('fa-eye');
+  
+  document.getElementById("toggle-password").classList.remove('fa-eye-slash');
+      }
+      else {
+          passwordField.type = 'password';
+      document.getElementById("toggle-password").classList.add('fa-eye-slash');
+  
+  document.getElementById("toggle-password").classList.remove('fa-eye');
+      }
+   
+          });
+          </script>
+  
+  
+  
+  
+  
+  
+  
+                
+  
+     </body>
+  
+  </html>

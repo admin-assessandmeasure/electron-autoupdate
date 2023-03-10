@@ -1,0 +1,1415 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+  <link rel="stylesheet" href="home.css">
+
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+</head>
+<link rel="stylesheet" href="afterlogin.css">
+
+
+<body id="main">
+  <style>
+    #scroll {
+
+      width: 100%;
+      height: 100px;
+      overflow: scroll;
+    }
+  </style>
+  <script>
+    //var url="http://localhost:3000/api/"
+    //var url="https://db.infoapto.com:8443/api/"
+    var url = "http://localhost:4000/api/"
+    $(document).ready(function () {
+      var axios = require('axios')
+      var config = {
+        method: 'get',
+        url: url + 'dropdown/getAllIndustry',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      axios(config).then(function (response) {
+
+        var data = response.data.industry;
+
+
+        $.each(data, function (key, value) {
+          $('#Industry').append($("<option></option>")
+            .attr("value", value.title)
+            .text(value.title));
+        });
+
+
+      })
+
+
+    });
+
+
+
+
+
+
+    $(document).ready(function () {
+      var axios = require('axios')
+      var config = {
+        method: 'get',
+        url: url + 'dropdown/getAllCategory',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      axios(config).then(function (response) {
+
+        var data = response.data.category;
+
+
+        $.each(data, function (key, value) {
+          $('#Category').append($("<option></option>")
+            .attr("value", value.title)
+            .text(value.title));
+        });
+
+      })
+
+
+    });
+
+
+
+
+    $(document).ready(function () {
+      var axios = require('axios')
+      var config = {
+        method: 'get',
+        url: url + 'dropdown/getAllRole',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      axios(config).then(function (response) {
+
+        var data = response.data.role;
+
+
+        $.each(data, function (key, value) {
+          $('#Role').append($("<option></option>")
+            .attr("value", value.title)
+            .text(value.title));
+
+        });
+
+      })
+
+
+    });
+
+
+
+
+    $(document).ready(function () {
+      var axios = require('axios')
+      var config = {
+        method: 'get',
+        url: url + 'dropdown/getAllPrimarySkill',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      axios(config).then(function (response) {
+
+        var data = response.data.skills;
+
+
+        $.each(data, function (key, value) {
+          $('#Primary').append($("<option></option>")
+            .attr("value", value.title)
+            .text(value.title));
+        });
+
+
+      })
+
+
+    });
+
+
+
+
+
+    $(document).ready(function () {
+      var axios = require('axios')
+      var config = {
+        method: 'get',
+        url: url + 'dropdown/getAllSecondarySkill',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      axios(config).then(function (response) {
+
+        var data = response.data.secondary_skill;
+
+
+        $.each(data, function (key, value) {
+          $('#Secondary').append($("<option></option>")
+            .attr("value", value.title)
+            .text(value.title));
+        });
+
+
+      })
+
+
+    });
+
+  </script>
+
+  <div class="header">
+
+    <!--Content before waves-->
+    <div class="inner-header inner">
+    </div>
+
+    <!--Waves Container-->
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+    <!--Waves end-->
+
+  </div>
+
+
+
+
+  <div class="container"
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top:100px;">
+    <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
+      <i class="fa fa-user rounded-circle"></i>
+      <p id="user" style="margin-top: 15px;">VIJAY</p>
+    </div>
+    <div class="content">
+      <h1>WELCOME TO INFOAPTO</h1>
+      <h1>WELCOME TO INFOAPTO</h1>
+    </div>
+
+
+    <div id="allmsg"></div>
+    <!-- <form method="POST" id="form" enctype="multipart/form-data">
+              <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-6">
+                      <label>Industry</label>
+
+                      <select class="browser-default custom-select" name="industry" id="Industry" required>
+                          <option selected value="">Select Industry</option>
+                    
+                         
+                        </select>  
+                 <div class="row">
+                  <div class="col-md-7"> </div>
+                  <div class="col-md-5" style="text-align: end;">
+                      <a href="#" class="pointer" data-toggle="modal" data-target="#modal-industry"> + Add More </a>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Category</label>
+                    <select class="browser-default custom-select" name="category" id="Category" required>
+                        <option selected value="">Select Category</option>
+  
+                        
+                      </select>
+                      <div class="row">
+                        <div class="col-md-7"> </div>
+                        <div class="col-md-5" style="text-align: end;">
+                            <a href="#" class="pointer" data-toggle="modal" data-target="#modal-category"> + Add More </a>
+                          </div>
+                        </div>
+                </div>
+              </div>
+              <div class="row">
+                 
+                  <div class="col-md-6">
+                      <label>Role</label>
+                      <select class="browser-default custom-select" name="role" id="Role" required>
+                          <option selected value="">Select Role</option>
+                          
+                        </select>
+                        <div class="row">
+                          <div class="col-md-7"> </div>
+                          <div class="col-md-5" style="text-align: end;">
+                              <a href="#" class="pointer" data-toggle="modal" data-target="#modal-role"> + Add More </a>
+                            </div>
+                          </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Primary Skills</label>
+                       <select class="js-multiple browser-default custom-select" name="primary[]" id="Primary" multiple="multiple" required>
+  
+                    
+                         
+                      </select>
+                      <div class="row">
+                        <div class="col-md-7"> </div>
+                        <div class="col-md-5" style="text-align: end;">
+                            <a href="#" class="pointer" data-toggle="modal" data-target="#modal-primary"> + Add More </a>
+                          </div>
+                        </div>
+                </div>
+              </div>
+              <div class="row">
+                  
+                  <div class="col-md-6">
+                      <label>Secondary Skills</label>  
+                      <select class="js-multiple browser-default custom-select" name="secondary[]" id="Secondary" multiple="multiple" required>
+                            
+                        </select>
+                        <div class="row">
+                          <div class="col-md-7"> </div>
+                          <div class="col-md-5" style="text-align: end;">
+                              <a href="#" class="pointer" data-toggle="modal" data-target="#modal-secondary"> + Add More </a>
+                            </div>
+                          </div>
+                  </div>
+                  <div class="col-md-6 ">
+                    <label>From Experience</label> 
+
+                    <input type=number 
+                    maxlength="4" 
+      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+       class="form-control" step=0.1  min="1" max="30" name="from" id="From" required />
+                   
+  
+                </div> 
+              </div>
+ 
+              <div class="row"> 
+                  
+                <div class="col-md-6">
+                    <label>To Experience</label>   
+                    <input type=number maxlength="4" 
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                     class="form-control" step=0.1 min="1" max="30" name="to" id="To" required />
+                </div>
+                <div class="col-md-6 ">
+                  <label>Upload Files</label>  
+                  <div class="field form-control">
+                      <input type="file" id="file" name="file" multiple  required  />
+                    </div>
+
+                 
+
+              </div> 
+            </div>
+              
+              <div class="row ">
+                  <div class="col-md-12 text-center">
+                    <a  href="#" id="formreset" class="button-btn save" > Reset Form </a>
+                    
+                    <button type="submit" id="form-submit" class="button-btn save" > Save </button>
+                     
+                    <a href="#" id="filereset" class="button-btn save" > Reset files </a> 
+                    
+                    
+               </div>
+              </div>
+  
+              <div class="row ">
+                <div class="col-md-7 text-center">
+                </div>
+                <div class="col-md-5 text-center">
+                  <a  href="#" id="error" class="button-btn save" data-toggle="modal" data-target="#modal-error"> Report Error - Quick Support</a> 
+                  
+                </div>
+              </div>
+  
+              <div id="scroll"></div>
+              </div>
+             
+            </form>-->
+
+
+  </div>
+
+
+
+  <div class="modal fade" id="modal-error" role="dialog">
+    <div class="modal-dialog  modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Report Error - Quick Support</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body  text-center">
+          <div id="allmsg1"></div>
+
+          <form method="POST" id="form-error" enctype="multipart/form-data">
+
+            <div class="row">
+              <div class="col-md-12">
+                <label>Message</label>
+                <input type="hidden" id="userid" class="form-control" name="userid">
+
+                <textarea id="error_message" name="text" rows="4" cols="50" class="form-control"
+                  placeholder="Enter Your Message" required></textarea>
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label> Upload Screenshot</label>
+                <input type="file" id="error_file" class="form-control" name="file" placeholder=" Upload Screenshot">
+
+              </div>
+
+            </div>
+
+
+            <div class="row" style="padding-top: 10px;">
+              <div class="col-md-12">
+                <button type="submit" id="error-submit" class="button-btn save"> Save </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modal-industry" role="dialog">
+    <div class="modal-dialog modal-md">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Add Industry</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal-body text-center">
+          <form method="POST" id="form-industry">
+            <div class="row">
+
+
+              <div class="col-md-12">
+                <input type="text" id="vindustry" class="form-control" name="industry" required><br>
+                <button type="submit" class="button-btn save"> Save </button>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-category" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Add Category</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="modal-body  text-center">
+          <form method="POST" id="form-category">
+            <div class="row">
+
+              <div class="col-md-12">
+                <input type="text" id="vcategory" class="form-control" name="category" required><br>
+                <button type="submit" class="button-btn save"> Save </button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-role" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Add Role</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal-body  text-center">
+          <form method="POST" id="form-role">
+            <div class="row">
+
+
+              <div class="col-md-12">
+                <input type="text" id="vrole" class="form-control" name="role" required><br>
+                <button type="submit" class="button-btn save"> Save </button>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-primary" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+
+
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Add Primary Skills</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body  text-center">
+          <form method="POST" id="form-primary">
+            <div class="row">
+
+
+              <div class="col-md-12">
+                <input type="text" id="vprimary" class="form-control" name="primary" required><br>
+                <button type="submit" class="button-btn save"> Save </button>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modal-secondary" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header ">
+          <div class="row" style="width: 100%;">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8 text-center">
+              <h4 class="modal-title">Add Secondary Skills</h4>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body  text-center">
+          <form method="POST" id="form-secondary">
+            <div class="row">
+
+
+              <div class="col-md-12">
+                <input type="text" id="vsecondary" class="form-control" name="secondary" required><br>
+                <button type="submit" class="button-btn save"> Save </button>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+
+    $('#form-industry').submit(function (e) {
+
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      e.preventDefault();
+      var industry = document.getElementById("vindustry").value;
+
+      var axios = require('axios')
+
+      var config =
+      {
+        method: 'post',
+        url: url + 'dropdown/addIndustry',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          title: industry,
+          userid: sessionStorage.getItem('id')
+        }
+      }
+      axios(config).then(function (response) {
+
+
+
+        if (response.data.status == true) {
+          $('#modal-industry').modal('hide');
+
+          $("#form-industry")[0].reset();
+          $('#Industry').empty();
+
+          document.getElementById("allmsg").innerHTML = "<p style='color:green;'>" + response.data.message + "</p>";
+
+          var data = response.data.data;
+
+          $.each(data, function (key, value) {
+            $('#Industry').append($("<option></option>")
+              .attr("value", value.title)
+              .text(value.title));
+          });
+
+        }
+        else {
+          $("#form-industry")[0].reset();
+          document.getElementById("allmsg").innerHTML = "<p style='color:red;'>" + response.data.message + "</p>";
+        }
+
+
+      })
+
+
+    });
+
+
+
+
+    $('#form-category').submit(function (e) {
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      e.preventDefault();
+      var category = document.getElementById("vcategory").value;
+
+      var axios = require('axios')
+
+      var config =
+      {
+        method: 'post',
+        url: url + 'dropdown/addCategory',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          title: category,
+          userid: sessionStorage.getItem('id'),
+        }
+      }
+      axios(config).then(function (response) {
+        if (response.data.status == true) {
+          $('#modal-category').modal('hide');
+          $("#form-category")[0].reset();
+          $('#Category').empty();
+
+          var data1 = response.data.data;
+
+          $.each(data1, function (key, value) {
+            $('#Category').append($("<option></option>")
+              .attr("value", value.title)
+              .text(value.title));
+          });
+          document.getElementById("allmsg").innerHTML = "<p style='color:green;'>" + response.data.message + "</p>";
+        } else {
+
+          $("#form-category")[0].reset();
+          document.getElementById("allmsg").innerHTML = "<p style='color:red;'>" + response.data.message + "</p>";
+        }
+      })
+
+    });
+
+    $('#form-role').submit(function (e) {
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      e.preventDefault();
+      var role = document.getElementById("vrole").value;
+
+      var axios = require('axios')
+
+      var config =
+      {
+        method: 'post',
+        url: url + 'dropdown/addRole',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          title: role,
+          userid: sessionStorage.getItem('id')
+        }
+      }
+      axios(config).then(function (response) {
+        if (response.data.status == true) {
+          $('#modal-role').modal('hide');
+          $('#Role').empty();
+          $("#form-role")[0].reset();
+          var data2 = response.data.data;
+
+          $.each(data2, function (key, value) {
+            $('#Role').append($("<option></option>")
+              .attr("value", value.title)
+              .text(value.title));
+          });
+          document.getElementById("allmsg").innerHTML = "<p style='color:green;'>" + response.data.message + "</p>";
+        } else {
+          $("#form-role")[0].reset();
+          document.getElementById("allmsg").innerHTML = "<p style='color:red;'>" + response.data.message + "</p>";
+        }
+      })
+
+    });
+
+    $('#form-primary').submit(function (e) {
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      e.preventDefault();
+      var primary = document.getElementById("vprimary").value;
+
+      var axios = require('axios')
+
+      var config =
+      {
+        method: 'post',
+        url: url + 'dropdown/addPrimarySkill',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          title: primary,
+          userid: sessionStorage.getItem('id')
+        }
+      }
+      axios(config).then(function (response) {
+
+        if (response.data.status == true) {
+          var config1 =
+          {
+            method: 'get',
+            url: url + 'dropdown/getAllPrimarySkill',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+
+          }
+          axios(config).then(function (response) {
+            if (response.data.status == true) {
+              console.log(response.data)
+              $('#modal-primary').modal('hide');
+              $("#form-primary")[0].reset();
+              $('#Primary').empty();
+
+              var data3 = response.data.data;
+
+              $.each(data3, function (key, value) {
+                $('#Primary').append($("<option></option>")
+                  .attr("value", value.title)
+                  .text(value.title));
+              });
+            }
+          })
+
+        } else {
+          $("#form-primary")[0].reset();
+          document.getElementById("allmsg").innerHTML = "<p style='color:red;'>" + response.data.message + "</p>";
+        }
+      })
+
+    });
+
+    $('#form-secondary').submit(async function (e) {
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      e.preventDefault();
+      var secondary = document.getElementById("vsecondary").value;
+
+      var axios = require('axios')
+
+      var config =
+      {
+        method: 'post',
+        url: url + 'dropdown/addSecondarySkill',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          title: secondary,
+          userid: sessionStorage.getItem('id')
+        }
+      }
+      axios(config).then(function (response) {
+        if (response.data.status == 1) {
+          var config1 =
+          {
+            method: 'get',
+            url: url + 'dropdown/getAllSecondarySkill',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }
+          axios(config1).then(function (response) {
+            if (response.data.status == true) {
+              $('#modal-secondary').modal('hide');
+              $("#form-secondary")[0].reset();
+              $('#Secondary').empty();
+
+              var data4 = response.data.secondary_skill;
+
+              $.each(data4, function (key, value) {
+                $('#Secondary').append($("<option></option>")
+                  .attr("value", value.title)
+                  .text(value.title));
+              });
+            }
+          })
+        } else {
+          $("#form-secondary")[0].reset();
+          document.getElementById("allmsg").innerHTML = "<p style='color:red;'>" + response.data.message + "</p>";
+        }
+
+      })
+      /*
+                         
+                           document.getElementById("allmsg").innerHTML="<p style='color:green;'>"+ response.data.message+"</p>";
+                           */
+    });
+
+  </script>
+
+  <script>
+    $("#iadd").click(function () {
+
+      $('#modal-industry').modal('show');
+
+    });
+
+    $("#cadd").click(function () {
+      $('#modal-category').modal('show');
+
+    });
+
+    $("#radd").change(function () {
+
+      $('#modal-role').modal('show');
+
+    });
+
+    $("#padd").change(function () {
+
+      $('#modal-primary').modal('show');
+
+    });
+
+    $("#sadd").change(function () {
+
+      $('#modal-secondary').modal('show');
+
+    });
+
+
+  </script>
+  <script>
+
+    var ipcRenderer = require('electron').ipcRenderer;
+    ipcRenderer.send('message:textread')
+    setInterval(function textrender() {
+
+      ipcRenderer.send('message:textread')
+
+
+    }, 9000000);//3600000 9000000
+
+  </script>
+  <script>
+    /*
+    var axios=require('axios')
+    const fs = require('fs');
+    var path = require('path');
+      myconfig={
+        method: 'post',
+            url: 'http://localhost:3000/api/allresumes/checkResume',
+            headers: { 
+              'Content-Type': 'application/json'
+              },
+              data : {
+                filename:l.files[i].name,
+                path:l.files[i].path
+              }
+      }
+    axios(myconfig).then(async response=>{
+      console.log(response)
+      if(response.data.status==true){
+        var ipcRenderer = require('electron').ipcRenderer;
+      textupload(response.data.filename,response.data.path)
+      ipcRenderer.send('message:s3upload',response.data.filename,response.data.path)
+  }
+    })
+  
+
+
+    async function textupload(filename,path){
+      console.log(filename)
+      try{
+      var ext=filename.split('.').pop();
+      if(ext=="doc"){
+        var ipcRenderer = require('electron').ipcRenderer;
+        ipcRenderer.send('message:pdfread',filename,path)
+      }
+      else if(ext=="pdf"){
+        var ipcRenderer = require('electron').ipcRenderer;
+        ipcRenderer.send('message:docread',filename,path)
+      }
+      else{
+        var ipcRenderer = require('electron').ipcRenderer;
+        ipcRenderer.send('message:docxread',filename,path)
+      }
+    }
+    catch(error){
+      throw error
+    }
+    }
+    */
+  </script>
+  <script>
+
+
+    $(document).ready(function () {
+      var name = sessionStorage.getItem('name');
+
+      document.getElementById('userid').value = sessionStorage.getItem('id');
+
+      document.getElementById('user').innerHTML = name;
+
+    });
+  </script>
+
+
+
+  <script>
+
+    $('#form').submit(async function (e) {
+      e.preventDefault();
+
+      document.getElementById("form-submit").disabled = true;
+
+      var primary = $.map($("#Primary option:selected"), function (el, i) {
+        return $(el).text();
+      });
+
+      var secondary = $.map($("#Secondary option:selected"), function (el, i) {
+        return $(el).text();
+      });
+
+
+      const { clipboard } = require('electron');
+      const fs = require('fs');
+      const AWS = require('aws-sdk');
+      const mime = require('mime');
+      var path = require('path');
+      var axios = require('axios')
+      var reload = 0;
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      var os = require('os');
+      const s3 = new AWS.S3({
+        accessKeyId: 'AKIA3HZ4LC7ZDE2RKAMV',
+        secretAccessKey: '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',
+      })
+      const storage = require('electron-storage');
+
+
+      require('dotenv').config()
+
+      var formData = new FormData(this);
+      var l = document.getElementById('file')
+      var len = l.files.length
+      formData.forEach(async function (entry) {
+
+        if (entry instanceof File) {
+
+
+          var binarydat = fs.readFileSync(entry.path)
+          xdata = {
+            filename: entry.name,
+            industry: document.getElementById("Industry").value,
+            category: document.getElementById("Category").value,
+            role: document.getElementById("Role").value,
+            primary: primary.join(", "),
+            secondary: secondary.join(", "),
+            from_year: document.getElementById("From").value,
+            to_year: document.getElementById("To").value,
+            date: new Date,
+            userid: sessionStorage.getItem('id')
+          }
+
+          const params = {
+            Bucket: "app-resumes" + "/" + sessionStorage.getItem('id'),
+            Key: entry.name,
+            Body: binarydat,
+            ACL: 'public-read',
+          }
+
+          myconfig = {
+            method: 'post',
+            url: url + 'resumes/checkResume',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: xdata
+          }
+          axios(myconfig).then(function (response) {
+            if (response.data.status == true) {
+
+              s3.upload(params, function (err, data) {
+                if (err) {
+                  throw err
+                }
+                else {
+
+
+                  if (data.ETag) {
+                    fileupload = {
+                      filename: data.key,
+                      industry: document.getElementById("Industry").value,
+                      category: document.getElementById("Category").value,
+                      role: document.getElementById("Role").value,
+                      primary: primary.join(", "),
+                      secondary: secondary.join(", "),
+                      date: new Date,
+                      userid: sessionStorage.getItem('id'),
+                      from_year: document.getElementById("From").value,
+                      to_year: document.getElementById("To").value,
+                    }
+                    myconfig1 = {
+                      method: 'post',
+                      url: url + 'resumes/addResume',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      data: fileupload
+                    }
+                    axios(myconfig1).then(function (response) {
+                      if (response.data.status == true) {
+
+                        document.getElementById("form-submit").disabled = false;
+
+                        $('#scroll').append($("<p style='color:green;'>" + response.data.message + "</p><br>"));
+
+                      }
+                      else {
+                        $('#scroll').append($("<p style='color:red;'>" + response.data.message + "</p><br>"));
+                        document.getElementById("form-submit").disabled = false;
+                      }
+                    })
+                  }
+
+
+                }
+              })
+
+
+            }
+            else {
+              $('#scroll').append($("<p style='color:red;'>" + response.data.message + "</p><br>"))
+              document.getElementById("form-submit").disabled = false;
+            }
+          })
+
+          reload++;
+
+        }
+        if (reload == len) {
+          document.getElementById('file').value = "";
+
+        }
+      })
+      return false;
+
+    })
+
+  </script>
+
+  <script>
+    /*
+    setInterval(myTimer, 540000);
+    
+    function myTimer() {
+    
+    const moment = require('moment');
+    
+    
+    
+    let indian_date = new Date().toLocaleString("en-Us", {timeZone: 'Asia/Kolkata'});
+    const today=moment(indian_date).format("DD-MM-YYYY")
+    
+      var axios = require('axios');
+      
+      var userid=sessionStorage.getItem('id');
+      const atime=moment(indian_date).format("HH:mm");
+      const btime = moment().add(9, 'minutes').format('HH:mm');
+      var data = {
+            "userid" : userid,
+            "atime": atime,
+            "btime": btime
+         }
+      var config = {
+        method: 'post',
+        url: localurl+'',
+         
+        data : data
+      };
+      
+      
+      axios(config)
+      
+      .then(function (response) {
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }*/
+  </script>
+  <script>
+    $('#filereset').click(function (e) {
+      document.getElementById('file').value = "";
+    })
+    $('#formreset').click(function (e) {
+      location.reload();
+    })
+  </script>
+  <script src="render.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $('.js-multiple').select2();
+    });
+  </script>
+
+  <script>
+    /*
+    $("#googlepage").click(function() {
+      console.log("in google page")
+      var ipcRenderer = require('electron').ipcRenderer;
+      ipcRenderer.send('message:googleshow')
+  });
+  */
+  </script>
+
+
+  <script>
+
+
+    $(document).ready(function () {
+      //var url="http://localhost:3000/api/"
+      //var url="https://db.infoapto.com:8443/api/"
+      var url = "http://localhost:4000/api/"
+      $('#form-error').submit(function (e) {
+
+        document.getElementById("error-submit").disabled = true;
+
+        e.preventDefault();
+        var ipcRenderer = require('electron').ipcRenderer;
+        $("#main").addClass("main1");
+        $('#main').append($("<div class='spinner'></div>"))
+        var errmessage = document.getElementById("error_message").value;
+        var myuserid = sessionStorage.getItem('id')
+        const uploadFile = document.querySelector('#error_file');
+
+        if (uploadFile.files.length != 0) {
+          if (uploadFile.files[0].type == "image/jpeg" || uploadFile.files[0].type == "image/png" || uploadFile.files[0].type == "image/jpg") {
+            var axios = require('axios');
+            thedata = {
+              message: errmessage,
+              userid: myuserid
+
+            }
+            var config = {
+              method: 'post',
+              url: url + 'error/addError',
+              headers: {
+                'Authorization': "Berar " + sessionStorage.getItem('token')
+              },
+              data: thedata
+            };
+            axios(config)
+              .then(function (response) {
+
+                if (response.data.status == 1) {
+                  var axios = require('axios');
+                  var errid = response.data.data._id
+                  var data1 = $("#form-error").serialize();
+
+                  var config1 = {
+                    method: 'post',
+                    url: 'https://infoapto.com/error.php',
+                    headers: {
+
+                    },
+                    data: data1
+                  };
+
+                  axios(config1)
+                    .then(function (response1) {
+
+
+                      if (response1.data == 1) {
+
+
+                        const uploadFile = document.querySelector('#error_file');
+
+                        const fs = require('fs');
+                        const AWS = require('aws-sdk');
+                        const mime = require('mime');
+                        var path = require('path');
+                        const storage = new AWS.S3({
+                          accessKeyId: 'AKIA3HZ4LC7ZDE2RKAMV',
+                          secretAccessKey: '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',
+                        })
+                        var binarydat = fs.readFileSync(uploadFile.files[0].path)
+
+                        const params = {
+                          Bucket: "app-resumes" + "/" + "support",
+                          Key: uploadFile.files[0].name,
+                          Body: binarydat,
+                          ACL: 'public-read',
+                        }
+                        storage.upload(params, function (err, filedata) {
+                          if (err) {
+                            throw err
+                          }
+                          if (filedata.ETag) {
+                            filedata.errid = errid
+                            var config1 = {
+                              method: 'post',
+                              url: url + 'error/addErrorFile',
+                              headers: {
+                                'Authorization': "Berar " + sessionStorage.getItem('token')
+                              },
+                              data: {
+                                filename: filedata.key.split('/')[1],
+                                errid: errid
+                              }
+                            };
+                            axios(config1)
+                              .then(function (response2) {
+                                $("#main").removeClass("main1");
+                                $(".spinner").removeClass("spinner");
+                                $("#form-error")[0].reset();
+                                $("#modal-error").modal('hide');
+                                document.getElementById("allmsg").innerHTML = "<p style='color:green;'>Message Sent Successfully</p>";
+                              })
+                          }
+                        })
+
+
+
+
+                      }
+                    })
+
+                }
+              })
+          }
+          else {
+            $("#main").removeClass("main1");
+            $(".spinner").removeClass("spinner");
+            document.getElementById("error-submit").disabled = false;
+            document.getElementById("allmsg1").innerHTML = "<p style='color:red;'>Check File Format</p>";
+          }
+        }
+
+        else {
+          var axios = require('axios');
+          thedata = {
+            message: errmessage,
+            userid: myuserid
+
+          }
+          var config = {
+            method: 'post',
+            url: url + 'error/addError',
+            headers: {
+              'Authorization': "Berar " + sessionStorage.getItem('token')
+            },
+            data: thedata
+          };
+          axios(config)
+            .then(function (response) {
+
+              if (response.data.status == 1) {
+                var axios = require('axios');
+                var errid = response.data.data._id
+                var data1 = $("#form-error").serialize();
+
+                var config1 = {
+                  method: 'post',
+                  url: 'https://infoapto.com/error.php',
+                  headers: {
+
+                  },
+                  data: data1
+                };
+
+                axios(config1)
+                  .then(function (response1) {
+                    $("#main").removeClass("main1");
+                    $(".spinner").removeClass("spinner");
+                    $("#form-error")[0].reset();
+                    $("#modal-error").modal('hide');
+                    document.getElementById("allmsg").innerHTML = "<p style='color:green;'>Message Sent Successfully</p>";
+                  }).catch(err => { console.log(err) })
+              }
+              else {
+                document.getElementById("error-submit").disabled = false;
+                document.getElementById("allmsg1").innerHTML = "<p style='color:red;'>Check File Format</p>";
+              }
+            })
+        }
+      })
+    });
+  </script>
+
+
+  <script>
+
+
+
+    ipcRenderer.on('loader_start', (event) => {
+      console.log("spinner_start")
+      $("#main").addClass("main1");
+      $('#main').append($("<div class='spinner'></div>"))
+
+    })
+
+
+    ipcRenderer.on('loader_stop', (event) => {
+      console.log("spinner_stop")
+      $("#main").removeClass("main1");
+      $(".spinner").removeClass("spinner");
+
+    })
+    ipcRenderer.on('check_main', (event, data) => {
+      console.log(data);
+    })
+
+  </script>
+</body>
+
+</html>
