@@ -8,7 +8,7 @@
     "make": "electron-forge make",
     "dist": "electron-builder",
     "build:prod": "electron-builder --win",
-    "build:publish": "set GH_TOKEN=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 && electron-builder --win  --publish always"
+    "build:publish": "set GH_TOKEN=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 && electron-builder --win  --publish always"
   },
   "keywords": [],
   "author": "Infoapto",
